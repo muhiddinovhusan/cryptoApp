@@ -1,7 +1,5 @@
 import { useCrypto } from '../crypto-managment/Context'
 import '../style/style.css'
-import eye from '../assets/images/Eye.svg'
-import inwatchlist from '../assets/images/greenEYE.svg'
 import {
     Table,
     TableBody,
