@@ -42,7 +42,7 @@ const SinglePage : React.FC = () => {
   if (loading) return <Loading/>;
 if(error)return <Loading/>;
   return (
-    <div className="flex mt-8 flex-wrap max-md:flex-col  ">
+    <div className="flex mt-8 px-8 flex-wrap max-md:flex-col  ">
       <div className=" w-2/5   max-md:w-full ">
 
       {coin ? (
