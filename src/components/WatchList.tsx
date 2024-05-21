@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { useCrypto } from "../crypto-managment/Context";
 import { formatNumber } from "../hook/hooks";
 import { Link } from "react-router-dom";
 
 const WatchList = () => {
-  const [watchListCoins, setWatchListCoins] = useState<any[]>([]);
   const { state, dispatch } = useCrypto();
   console.log(state.watchList)
   // useEffect(() => {

@@ -11,7 +11,7 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table"
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { formatNumber, loadFromLocalStorage } from '../hook/hooks'
 import { Link } from 'react-router-dom'
 
@@ -40,7 +40,7 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
     // const paginate = (pageNumber: number) => dispatch({ type: 'SET_CURRENT_PAGE', payload: pageNumber });
   
  
-    const toggleWatchlist = (coin) => {
+    const toggleWatchlist = (coin : any) => {
         if (state.watchList && state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id)) {
           dispatch({ type: 'REMOVE_FROM_WATCHLIST', payload: coin });
         } else {
