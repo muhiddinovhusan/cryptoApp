@@ -43,10 +43,10 @@ const SinglePage : React.FC = () => {
 if(error)return <Loading/>;
   return (
     <div className="flex flex-wrap max-md:flex-col  ">
-      <div className=" w-2/5 max-md:w-full max-sm:order-2">
+      <div className=" w-2/5   max-md:w-full ">
 
       {coin ? (
-       <div className='flex flex-col px-4 gap-5 lg:gap-10 border-b-2 border-r-0 lg:border-b-0 lg:border-r-2 border-zinc-500 pb-5 sm:pb-8 lg:pr-8 w-full lg:w-[550px]'>
+       <div className='flex flex-col px-4 gap-5 lg:gap-10 border-b-2 border-r-0 max-md:mb-2 lg:border-b-0 lg:border-r-2 border-zinc-500 pb-5 sm:pb-8 lg:pr-8 w-full lg:w-[550px]'>
        <div className='flex flex-col items-center justify-center gap-2 sm:gap-5 lg:gap-10'>
          <img src={coin.image?.large} alt='coinimage' width={160} height={160} className="w-28 h-28 lg:h-40 lg:w-40" />
          <h1 className='text-white font-bold text-3xl ml-2 lg:text-5xl capitalize'>{coin.name}</h1>
@@ -64,7 +64,7 @@ if(error)return <Loading/>;
         <div>No coin data available</div>
       )}
       </div>
-      <div className=" w-3/5 max-md:w-full  max-sm:order-1">
+      <div className=" w-3/5 max-md:w-full overflow-x-hidden  max-md:mb-8   ">
       <CoinChart id={id} timeRange={timeRange} />
         <div className="gap-5 font text-sm  flex  ">
         <button

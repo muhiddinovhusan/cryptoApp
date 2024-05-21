@@ -73,15 +73,15 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
   
 
     return (
-        <Table className=''>
+        <Table className='overflow-x-auto  whitespace-nowrap w-full'>
             <TableCaption className=''>
             </TableCaption>
             <TableHeader className='bg-[#87CEEB] '>
                 <TableRow>
                     <TableHead className="w-[700px]">Coin</TableHead>
-                    <TableHead>Price</TableHead>
+                    <TableHead >Price</TableHead>
                     <TableHead>24h Change</TableHead>
-                    <TableHead className="text-right">Market Cap</TableHead>
+                    <TableHead className="text-right ">Market Cap</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -90,7 +90,7 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
 
                         <TableRow key={coin.id} className='border-b '>
 
-                            <TableCell className="font-medium">
+                            <TableCell className="font-medium ">
 
                                 <Link to={`/single/${coin.id}`} className='flex items-center gap-3'>
                                     <img src={coin.image} alt={coin.name} className="w-12 h-12" />
