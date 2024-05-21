@@ -57,11 +57,11 @@ const Pagination = ({ handlePageChange }: { handlePageChange: any }) => {
   };
 
   return (
-    <div className="flex justify-center px-5 flex-wrap max-sm:gap-5 max-sm:justify-start  items-center my-4">
+    <div className="flex justify-center px-5     items-center my-4">
       <button
         onClick={handlePreviousPage}
         disabled={state.currentPage === 1}
-        className=" text-white px-2 py-1 mx-2 rounded disabled:opacity-50"
+        className=" text-white  md:py-2 md:mx-2  disabled:opacity-50"
       >
         <ChevronLeft/>
       </button>
@@ -70,7 +70,7 @@ const Pagination = ({ handlePageChange }: { handlePageChange: any }) => {
           key={index}
           onClick={() => handlePageChange(page)}
           disabled={page === '...'}
-          className={`px-4 py-2 mx-1   rounded-full ${
+          className={` md:px-3 md:mx-1 flex justify-center items-center w-8 h-8  rounded-full ${
             state.currentPage === page ? 'bg-blue-500  text-white' : 'bg-inherit text-sky-300'
           } ${page === '...' ? 'cursor-default' : ''}`}
         >
@@ -80,7 +80,7 @@ const Pagination = ({ handlePageChange }: { handlePageChange: any }) => {
       <button
         onClick={handleNextPage}
         disabled={state.currentPage === state.totalPages}
-        className=" text-white px-4 py-2 mx-2 rounded disabled:opacity-50"
+        className=" text-white  md:py-2 md:mx-2  disabled:opacity-50"
       >
         <ChevronRight/>
       </button>

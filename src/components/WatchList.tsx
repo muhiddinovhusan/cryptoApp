@@ -5,14 +5,22 @@ import { Link } from "react-router-dom";
 const WatchList = () => {
   const { state, dispatch } = useCrypto();
   console.log(state.watchList)
-  // useEffect(() => {
-  //   const storedWatchList = JSON.parse(localStorage.getItem('watchList') || '[]');
-  //   setWatchListCoins(storedWatchList);
-  // }, []);
+  let currency: string;
 
-  // const closeWatchList = () => {
-  //   dispatch({ type: 'IS_OPEN' });
-  // };
+  if (state.currency === "usd") {
+      currency = "$"
+  } else if (state.currency === "eur") {
+      currency = "€"
+  } else if (state.currency === "rub") {
+      currency = "₽"
+  } 
+   else if (state.currency === "jpy") {
+      currency = "¥"
+  } 
+  else {
+      currency = "$"
+  }
+
 
   const removeFromWatchlist = (coinId: string) => {
     dispatch({ type: 'REMOVE_FROM_WATCHLIST', payload: coinId });
@@ -33,7 +41,7 @@ const WatchList = () => {
 
                 </Link>
                 <div className="flex flex-col items-center gap-1">
-                  <span className="uppercase text-lg text-white">{formatNumber(coin.market_cap)}</span>
+                  <span className="uppercase text-lg text-white">{currency}{formatNumber(coin.current_price)}</span>
                   <button className="bg-[#FF0000] text-white w-24 mb-2 " onClick={() => removeFromWatchlist(coin)}>Remove</button>
                 </div>
               </div>

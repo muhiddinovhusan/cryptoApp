@@ -2,7 +2,7 @@ import '../style/style.css'
 import { CarouselPlugin } from './carousel'
 const Hero = () => {
   return (
-    <div className="background   pt-12 pb-5 ">
+    <div className="background  max-sm:w-full  pt-12 pb-5 ">
     <div className='flex flex-col w-full gap-10 center' >
 
       <div  className='font flex flex-col gap-4 '>

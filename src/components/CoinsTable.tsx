@@ -73,15 +73,15 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
   
 
     return (
-        <Table className='overflow-x-auto  whitespace-nowrap w-full'>
+        <Table className='overflow-x-auto  whitespace-nowrap max-sm:w-[600px] w-full'>
             <TableCaption className=''>
             </TableCaption>
             <TableHeader className='bg-[#87CEEB] '>
                 <TableRow>
-                    <TableHead className="w-[700px]">Coin</TableHead>
-                    <TableHead >Price</TableHead>
-                    <TableHead>24h Change</TableHead>
-                    <TableHead className="text-right ">Market Cap</TableHead>
+                    <TableHead className="w-1/4">Coin</TableHead>
+                    <TableHead className='w-1/6 text-right' >Price</TableHead>
+                    <TableHead className='w-1/6 text-right'>24h Change</TableHead>
+                    <TableHead className="text-right w-1/6 ">Market Cap</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -101,8 +101,9 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
                                     </div>
                                 </Link>
                             </TableCell>
-                            <TableCell className='text-white'>{currency}{coin.current_price}</TableCell>
-                            <TableCell> <div className='flex gap-3 items-center'>
+                            <TableCell className='text-white text-right'>{currency}{coin.current_price}</TableCell>
+                            <TableCell className=''> 
+                            <div className='flex gap-3 justify-end  items-center'>
 
                                 <img
                                     src={state.watchList &&  state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id) ? inwatchlist : eye}
@@ -112,9 +113,9 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
                                 />
 
                                 {coin.price_change_percentage_24h > 0 ? (
-                                    <span className='font-medium font text-green-500'>+ {coin.price_change_percentage_24h}%</span>
+                                    <span className='font-medium text-right font text-green-500'>+ {coin.price_change_percentage_24h}%</span>
                                 ) : (
-                                    <span className='font-medium font text-red-500'>{coin.price_change_percentage_24h}%</span>
+                                    <span className='font-medium text-right font text-red-500'>{coin.price_change_percentage_24h}%</span>
                                 )}
                                 {/* <button onClick={()=>toggleWatchlist(coin.id)}>
                                         {state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id) ? (
