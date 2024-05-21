@@ -88,7 +88,7 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
                 {
                     Coins.map(coin => (
 
-                        <TableRow key={coin.id} className='border-b '>
+                        <TableRow key={coin.id} className='border-b  border-zinc-700'>
 
                             <TableCell className="font-medium ">
 
@@ -101,30 +101,22 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
                                     </div>
                                 </Link>
                             </TableCell>
-                            <TableCell className='text-white text-right'>{currency}{coin.current_price}</TableCell>
-                            <TableCell className=''> 
-                            <div className='flex gap-3 justify-end  items-center'>
-
-                                <img
+                            <TableCell className='text-white   text-right'>{currency}{coin.current_price}</TableCell>
+                            <TableCell className='text-right py-2 sm:py-4'> 
+                            <div className='flex gap-3  justify-end  items-center'>
+                                {coin.price_change_percentage_24h > 0 ? (
+                                    <span className='font-medium  font text-green-500'>+ {coin.price_change_percentage_24h}%</span>
+                                ) : (
+                                    <span className='font-medium  font text-red-500'>{coin.price_change_percentage_24h}%</span>
+                                )}
+                             <button>
+<img
                                     src={state.watchList &&  state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id) ? inwatchlist : eye}
                                     alt="watchlist-icon"
                                     onClick={() => toggleWatchlist(coin)}
-                                    className='cursor-pointer'
+                                    className='cursor-pointer w-7 h-7 '
                                 />
-
-                                {coin.price_change_percentage_24h > 0 ? (
-                                    <span className='font-medium text-right font text-green-500'>+ {coin.price_change_percentage_24h}%</span>
-                                ) : (
-                                    <span className='font-medium text-right font text-red-500'>{coin.price_change_percentage_24h}%</span>
-                                )}
-                                {/* <button onClick={()=>toggleWatchlist(coin.id)}>
-                                        {state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id) ? (
-                                                <img src={inwatchlist} alt="" />
-                                            ) : (
-                                              <img src={eye} alt="" />
-                                            )
-                                            }
-                                        </button> */}
+</button>
                             </div>
 
                             </TableCell>
