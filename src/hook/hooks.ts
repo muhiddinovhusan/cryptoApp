@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+
+interface width {
+    width: undefined | number;
+    height: undefined | number; 
+}
+
+
 export const loadFromLocalStorage = (key :string) => {
     try {
         const serializedValue = localStorage.getItem(key);
@@ -39,10 +46,11 @@ export const formatNumber = (number: number) => {
 
 
 const useWindowSize = () => {
-    const [windowSize, setWindowSize] = useState({
-        width: undefined,
+    const [windowSize, setWindowSize] = useState<width>({
+        width: undefined ,
         height: undefined,
-    });
+    }
+);
 
     useEffect(() => {
         const handleResize = () => {

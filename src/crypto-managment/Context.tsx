@@ -12,7 +12,7 @@ interface State {
   currency: string
 }
 
-type StateActions =
+type Actions =
   | { type: 'IS_OPEN' }
   | { type: 'GET_ALL_COINS'; payload: any[] }
   | { type: 'SET_CURRENT_PAGE'; payload: number }
@@ -23,12 +23,12 @@ type StateActions =
 
 
 
-interface StateContextProps {
+interface ContextProps {
   state: State;
-  dispatch: React.Dispatch<StateActions>;
+  dispatch: React.Dispatch<Actions>;
 }
 
-const CryptoContext = createContext<StateContextProps | undefined>(undefined);
+const CryptoContext = createContext<ContextProps | undefined>(undefined);
 
 const initialState: State = {
   isOpen: false,
@@ -40,7 +40,7 @@ const initialState: State = {
   currency: "usd"
 };
 
-const StateReducer = (state: State, action: StateActions): State => {
+const StateReducer = (state: State, action: Actions): State => {
   switch (action.type) {
     case 'IS_OPEN':
       return {

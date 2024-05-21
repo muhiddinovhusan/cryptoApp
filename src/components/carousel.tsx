@@ -14,6 +14,17 @@ import {
 } from "../ui/carousel"
 import { useCrypto } from "../crypto-managment/Context"
 import useWindowSize from "../hook/hooks"
+import { Link } from "react-router-dom"
+
+
+
+interface Coin {
+    id: string;
+    image: string;
+    symbol: string;
+    price_change_percentage_24h: number;
+    current_price: number;
+}
 
 export function CarouselPlugin() {
     const plugin = React.useRef(
@@ -21,7 +32,7 @@ export function CarouselPlugin() {
     )
 
     const [coins, setCoins] = React.useState([]);
-    const windowSize = useWindowSize(); // custom hookni chaqirish
+    const windowSize = useWindowSize(); 
 
     let currency: string;
     const { state } = useCrypto()
@@ -61,7 +72,7 @@ export function CarouselPlugin() {
         return result;
     };
 
-    const groupSize = windowSize.width <= 640 ? 3 : 4; 
+    const groupSize =windowSize.width && windowSize.width <= 640 ? 3 : 4; 
 
     const groupedCoins = groupArray(coins, groupSize);
 
@@ -75,11 +86,11 @@ export function CarouselPlugin() {
         >
             <CarouselContent className="w-full">
                 {
-                    groupedCoins.map((group, index) => (
+                    groupedCoins.map((coins, index) => (
                         <CarouselItem key={index} className="flex items-center justify-around">
                         {
-                            group.map((coin) => (
-                                <div key={coin.id} className='flex flex-col items-center gap-1 md:gap-3 cursor-pointer group'>
+                            coins.map((coin : Coin) => (
+                                <Link to={`/single/${coin.id}`} key={coin.id} className='flex flex-col items-center gap-1 md:gap-3 cursor-pointer group'>
                                     <img src={coin.image} alt='cimage' className='w-12 h-12 md:w-20 md:h-20 transition-transform duration-300 ease-in-out transform-gpu group-hover:scale-110' />
                                     <div className='text-center'>
                                         <p className='text-white font-medium uppercase text-xs sm:text-sm md:text-base leading-5 md:leading-6'>{coin.symbol.toUpperCase()}  {coin.price_change_percentage_24h > 0 ? (
@@ -89,7 +100,7 @@ export function CarouselPlugin() {
                                 )}</p>
                                         <p className='font-semibold text-sm sm:text-base md:text-lg text-white leading-5 md:leading-6'> {currency} {coin.current_price.toLocaleString()}</p>
                                     </div>
-                                </div>
+                                </Link>
                             ))
                         }
     

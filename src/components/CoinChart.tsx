@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useCrypto } from '../crypto-managment/Context';
 
 interface CoinChartProps {
-  id: string;
+  id: string | undefined;
+  timeRange: string ;
 }
 
 const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
@@ -94,7 +95,7 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
           options={chartData.options}
           series={chartData.series}
           type="line"
-          height={550}
+          height={600}
 
         />
       )}

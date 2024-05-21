@@ -40,13 +40,14 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
     // const paginate = (pageNumber: number) => dispatch({ type: 'SET_CURRENT_PAGE', payload: pageNumber });
   
  
-    const toggleWatchlist = (coinId: string) => {
-        if (state.watchList && state.watchList.some(watchlist => watchlist.id === coinId)) {
-            dispatch({ type: 'REMOVE_FROM_WATCHLIST', payload: coinId });
+    const toggleWatchlist = (coin) => {
+        if (state.watchList && state.watchList.some(watchlistCoin => watchlistCoin.id === coin.id)) {
+          dispatch({ type: 'REMOVE_FROM_WATCHLIST', payload: coin });
         } else {
-            dispatch({ type: 'ADD_TO_WATCHLIST', payload: coinId });
+          dispatch({ type: 'ADD_TO_WATCHLIST', payload: coin });
         }
-    };
+      };
+
 
     useEffect(() => {
         const watchList = loadFromLocalStorage("watchList" || "[]");
