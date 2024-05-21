@@ -102,7 +102,7 @@ const CoinsTable = ({ searchQuery }: { searchQuery: string }) => {
                                 </Link>
                             </TableCell>
                             <TableCell className='text-white   text-right'>{currency}{coin.current_price}</TableCell>
-                            <TableCell className='text-right py-2 sm:py-4'> 
+                            <TableCell className=' '> 
                             <div className='flex gap-3  justify-end  items-center'>
                                 {coin.price_change_percentage_24h > 0 ? (
                                     <span className='font-medium  font text-green-500'>+ {coin.price_change_percentage_24h}%</span>
