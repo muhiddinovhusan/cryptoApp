@@ -70,8 +70,8 @@ const Pagination = ({ handlePageChange }: { handlePageChange: any }) => {
           key={index}
           onClick={() => handlePageChange(page)}
           disabled={page === '...'}
-          className={` md:px-3 md:mx-1 flex justify-center items-center w-8 h-8  rounded-full ${
-            state.currentPage === page ? 'bg-blue-500  text-white' : 'bg-inherit text-sky-300'
+          className={` md:px-3 md:mx-1 flex justify-center text-sky-300 items-center w-8 h-8  rounded-full ${
+            state.currentPage === page ? 'bg-zinc-700  ' : 'bg-inherit '
           } ${page === '...' ? 'cursor-default' : ''}`}
         >
           {page}
