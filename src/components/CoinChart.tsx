@@ -5,27 +5,42 @@ import { useCrypto } from '../crypto-managment/Context';
 
 interface CoinChartProps {
   id: string | undefined;
-  timeRange: string ;
+  timeRange: string;
 }
 
-const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
+const SingleCoinChart: React.FC<CoinChartProps> = ({ id, timeRange }) => {
   const [chartData, setChartData] = useState<any>({ series: [], options: {} });
 
-  const {state} = useCrypto();
+  const { state } = useCrypto();
 
   let currency: string;
   if (state.currency === "usd") {
-    currency = "$"
+    currency = "$";
   } else if (state.currency === "eur") {
-    currency = "€"
+    currency = "€";
   } else if (state.currency === "rub") {
-    currency = "₽"
+    currency = "₽";
   } else if (state.currency === "jpy") {
-    currency = "¥"
+    currency = "¥";
   } else {
-    currency = "$"
+    currency = "$";
   }
-  
+
+  const getXAxisFormat = (range: string) => {
+    switch (range) {
+      case '1':
+      case '7':
+        return 'HH:mm'; 
+      case '30':
+        return 'dd MMM'; 
+      case '90':
+        return 'dd MMM'; 
+      case '365':
+        return 'MMM yyyy'; 
+      default:
+        return 'dd MMM yyyy';
+    }
+  };
 
   useEffect(() => {
     const getCoinHistory = async () => {
@@ -35,14 +50,12 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
         );
         const data = response.data.prices;
         const formattedData = data
-          .filter((item: any) => !isNaN(item[1]))  
+          .filter((item: any) => !isNaN(item[1]))
           .map((item: any) => ({
             x: new Date(item[0]),
             y: item[1]
           }));
 
-
-          
         const newChartData = {
           series: [{
             name: "Narx",
@@ -54,7 +67,11 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
               height: 550
             },
             xaxis: {
-              type: 'datatime',
+              type: 'datetime',
+              labels: {
+                datetimeUTC: false, // Mahalliy vaqtni ko'rsatish uchun
+                format: getXAxisFormat(timeRange) // Vaqt oralig'iga asoslangan format
+              },
             },
             yaxis: {
               labels: {
@@ -62,10 +79,9 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
                   return currency + value.toFixed(2);
                 }
               }
-
             },
             title: {
-              text: `Narxlar Tarixi ${timeRange} `,
+              text: `Narxlar Tarixi ${timeRange} kun`,
               align: 'left'
             },
             stroke: {
@@ -79,14 +95,14 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
 
         setChartData(newChartData);
       } catch (error) {
-        console.error('Tanga tarixi maʼlumotlarini olishda xatolik:');
+        console.error('Tanga tarixi maʼlumotlarini olishda xatolik:', error);
       }
     };
 
     if (id) {
       getCoinHistory();
     }
-  }, [id,timeRange,currency]);
+  }, [id, timeRange, currency]);
 
   return (
     <div className=''>
@@ -96,7 +112,6 @@ const SingleCoinChart: React.FC<CoinChartProps> = ({ id , timeRange }) => {
           series={chartData.series}
           type="line"
           height={600}
-
         />
       )}
     </div>
